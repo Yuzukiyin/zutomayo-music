@@ -435,6 +435,12 @@ main {
     color: rgba(255, 255, 255, 0.80); /* 设置序号、时长等文字颜色为半透明白色 */
 }
 
+/* 使时长列右对齐（表格中第三列为 DURATION） */
+.tracks-table th:nth-child(3),
+.tracks-table td:nth-child(3) {
+    text-align: right;
+}
+
 .track-row {/* 曲目行样式 */
     transition: var(--transition);/* 平滑过渡 */
     cursor: pointer;/* 鼠标悬停时显示指针 */
@@ -602,6 +608,12 @@ footer p {
     font-family: 
         'Noto Serif JP',
         serif;
+}
+
+/* 在单曲详情页的 meta 区域中，将时长推到右侧 */
+.track-duration {
+    margin-left: auto; /* 在 flex 容器中推到最右 */
+    text-align: right;
 }
 
 /* 播放器区域 */
