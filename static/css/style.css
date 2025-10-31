@@ -935,6 +935,13 @@ footer p {
     }
 }
 
+@media (max-width: 900px) {/* 小于 900px 屏幕调整 */
+    .album-detail,
+    .track-detail {
+        max-width: 94%;
+    }
+}
+
 @media (max-width: 1024px) {/* 中等屏幕调整 */
     .disco-section {
         grid-template-columns: repeat(3, 1fr);
