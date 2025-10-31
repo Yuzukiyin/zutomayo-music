@@ -1165,6 +1165,53 @@ footer p {
     }
 }
 
+@media (max-width: 475px) {/* 极小屏幕调整 */
+    /* Album 和 Track 页面宽度占满屏幕 */
+    .album-detail,
+    .track-detail {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* 播放器容器按比例缩放 */
+    .player-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* 网易云音乐播放器缩放 */
+    .netease-player iframe {
+        width: 100%;
+        max-width: 330px;
+        height: auto;
+        aspect-ratio: 330 / 86;
+    }
+    
+    /* YouTube 播放器缩放 */
+    .youtube-player iframe {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 680 / 400;
+    }
+    
+    /* Bilibili 播放器缩放 */
+    .bilibili-player iframe {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 680 / 400;
+    }
+    
+    /* 通用播放器缩放 */
+    .generic-player iframe {
+        width: 100%;
+        height: auto;
+        min-height: 150px;
+    }
+}
+
 @media (max-width: 480px) {/* 超小屏幕调整 */
     .container {
         padding: 0 15px;
