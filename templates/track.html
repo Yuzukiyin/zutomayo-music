@@ -1,0 +1,178 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ track.title }} - {{ album.title }}{% endblock %}
+
+{% block content %}
+<section class="track-detail">
+    <!-- 返回专辑按钮 -->
+    <div class="back-to-album">
+        <a href="/album/{{ album.id }}" class="btn-back">← 返回专辑</a>
+    </div>
+
+    <!-- 单曲主要信息区 -->
+    <div class="track-header">
+        <!-- 专辑封面 -->
+        <div class="track-cover">
+            <img src="{{ album.cover_image }}" alt="{{ album.title }}" loading="lazy">
+        </div>
+
+        <!-- 单曲信息 -->
+        <div class="track-info">
+            <p class="track-album-name">{{ album.title }}</p>
+            <h1 class="track-title-main">{{ track.title }}</h1>
+            <p class="track-meta">
+                <span class="track-number">Track {{ '%02d' % track.track_number }}</span>
+                <span class="track-duration">{{ track.duration }}</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- 音频播放器区域（支持轮播） -->
+    <div class="track-player">
+        {% if track.audio_url %}
+            {% set audio_urls = track.audio_url %}
+            {% if audio_urls is string %}
+                {# 单个播放器（旧格式兼容） #}
+                {% set audio_list = [audio_urls] %}
+            {% elif audio_urls is iterable and audio_urls is not mapping %}
+                {# 数组格式 #}
+                {% set audio_list = audio_urls %}
+            {% else %}
+                {% set audio_list = [] %}
+            {% endif %}
+            
+            {% if audio_list|length > 0 %}
+                <div class="player-carousel">
+                    <!-- 播放器容器 -->
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            {% for url in audio_list %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                {% if 'music.163.com' in url %}
+                                    <!-- 网易云音乐播放器 -->
+                                    <div class="player-wrapper netease-player">
+                                        <iframe src="{{ url }}"
+                                                width="330" 
+                                                height="86"
+                                                style="border: none;"
+                                                loading="lazy">
+                                        </iframe>
+                                    </div>
+                                
+                                {% elif 'youtube.com' in url or 'youtube-nocookie.com' in url %}
+                                    <!-- YouTube 播放器 -->
+                                    <div class="player-wrapper youtube-player">
+                                        <iframe src="{{ url }}" 
+                                                width="680" 
+                                                height="400"
+                                                title="YouTube video player"
+                                                frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                                allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                
+                                {% elif 'bilibili.com' in url %}
+                                    <!-- Bilibili 播放器 -->
+                                    <div class="player-wrapper bilibili-player">
+                                        <iframe src="{{ url }}"
+                                                width="680"
+                                                height="400"
+                                                frameborder="0"
+                                                scrolling="no"
+                                                allowfullscreen="true">
+                                        </iframe>
+                                    </div>
+                                
+                                {% else %}
+                                    <!-- 通用播放器 -->
+                                    <div class="player-wrapper generic-player">
+                                        <iframe src="{{ url }}" 
+                                                width="100%" 
+                                                height="200"
+                                                style="border: none;"
+                                                allowfullscreen
+                                                loading="lazy">
+                                        </iframe>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- 左右切换按钮 -->
+                        {% if audio_list|length > 1 %}
+                        <button class="carousel-btn prev" aria-label="上一个播放器">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn next" aria-label="下一个播放器">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- 轮播指示器（移到底部） -->
+                    {% if audio_list|length > 1 %}
+                    <div class="carousel-indicators">
+                        {% for url in audio_list %}
+                        <span class="indicator {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}" title="播放器 {{ loop.index }}"></span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <!-- audio_url 是空数组 -->
+                <div class="no-audio">
+                    <p>⚠️ 该曲目暂无音频链接</p>
+                    <p class="help-text">
+                        请使用 update_track_meta.py 添加播放器链接<br>
+                        支持平台：网易云音乐、YouTube、Bilibili
+                    </p>
+                </div>
+            {% endif %}
+            
+        {% else %}
+            <!-- 无音频链接时的提示 -->
+            <div class="no-audio">
+                <p>⚠️ 该曲目暂无音频链接</p>
+                <p class="help-text">
+                    请使用 update_track_meta.py 添加播放器链接<br>
+                    支持平台：网易云音乐、YouTube、Bilibili
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- 描述区域（原"歌词"区域，复用 tracks.lyrics 字段作为描述存储） -->
+    <div class="track-lyrics">
+        
+        {% if track.lyrics %}
+            <!-- 显示描述（每行用换行符分隔） -->
+            <div class="lyrics-content">
+                {% for line in track.lyrics.split('\n') %}
+                    <p class="lyrics-line">{{ line }}</p>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- 无描述时的提示 -->
+            <div class="no-lyrics">
+                <p>📝 该曲目暂无描述</p>
+                <p class="help-text">
+                    如何添加描述到数据库：<br><br>
+                    1. 准备描述文本（可多行，用 \n 分隔）<br>
+                    2. 执行 SQL 更新：<br>
+                    <code>
+                        UPDATE tracks SET lyrics = '第一行描述\n第二行描述\n第三行描述...' WHERE id = {{ track.id }};
+                    </code><br><br>
+                    建议不要粘贴受版权保护的完整歌词，可书写个人感受、简介摘要，或添加官方页面链接。
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+</section>
+{% endblock %}

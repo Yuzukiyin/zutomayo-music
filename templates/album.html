@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ album.title }}{% endblock %}
+
+{% block content %}
+<section class="album-detail"><!-- 专辑详情页 -->
+    <div class="album-header"><!-- 专辑头部 -->
+        <div class="album-cover-large"><!-- 大尺寸封面 -->
+            <img src="{{ album.cover_image }}" alt="{{ album.title }}" loading="lazy"><!-- 封面图片 -->
+        </div>
+        <div class="album-meta"><!-- 专辑元信息 -->
+            <p class="release-date">Release Date: {{ album.release_date }}</p><!-- 发布时间 -->
+            <h1>{{ album.title }}</h1><!-- 专辑标题 -->
+            <button class="btn btn-play" onclick="playAll()">▶ PLAY ALL</button><!-- 播放全部按钮 -->
+        </div>
+    </div>
+
+    <div class="tracklist"><!-- 曲目列表 -->
+        <h3>List</h3><!-- 曲目标题 -->
+        <table class="tracks-table"><!-- 曲目表格 -->
+            <thead>
+                <tr>
+                    <th style="width: 60px;">#</th><!-- 序号列 -->
+                    <th>TITLE</th><!-- 标题列 -->
+                    <th style="width: 100px;">DURATION</th><!-- 时长列 -->
+                    <th style="width: 80px;"></th><!-- 播放按钮列 -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for track in tracks %}
+                <tr class="track-row" data-track-id="{{ track.id }}"><!-- 单个曲目行 -->
+                    <td><strong>{{ '%02d' % track.track_number }}</strong></td><!-- 曲目序号 -->
+                    <td class="track-title">
+                        <a href="/track/{{ track.id }}" style="color: inherit; text-decoration: none;">
+                            {{ track.title }}
+                        </a>
+                    </td><!-- 曲目标题（可点击跳转） -->
+                    <td>{{ track.duration }}</td><!-- 曲目时长 -->
+                    <td>
+                        <a href="/track/{{ track.id }}" class="btn-small" style="text-decoration: none;">
+                            ▶
+                        </a><!-- 播放按钮（跳转到单曲页） -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="back-link">
+        <a href="/" class="btn">← BACK TO LIST</a><!-- 返回列表按钮 -->
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// 点击曲目行跳转到单曲页面
+document.querySelectorAll('.track-row').forEach(row => {
+    row.addEventListener('click', function(e) {
+        // 如果点击的不是播放按钮，则跳转到单曲页面
+        if (!e.target.classList.contains('btn-small') && e.target.tagName !== 'A') {
+            const trackId = this.dataset.trackId;
+            window.location.href = `/track/${trackId}`;
+        }
+    });
+});
+</script>
+{% endblock %}

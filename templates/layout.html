@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja"><!-- 日文为主,兼容中文 -->
+<head>
+    <meta charset="UTF-8"><!-- 设置字符编码 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- 兼容性设置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- 设置响应式视图 -->
+    
+    <!-- Google Fonts - 粗体字体 + 衬线字体 + Cinzel 细体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Teko:wght@700&family=Oswald:wght@700&family=Noto+Serif+JP:wght@200;300;400&family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <title>{% block title %}
+        
+        ZUTOMAYO
+        
+        {% endblock %}</title>
+    <meta name="description" content="ZUTOMAYO - 音乐粉丝网站 - 快来加入真批！" /><!-- 网站描述 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"><!-- 引入CSS样式表 -->
+</head>
+<body>
+    <header class="navbar"><!-- 导航栏 -->
+        <div class="container">
+            <a href="/" class="logo">♬ZUTOMAYO'S RELEASE</a>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}<!-- 内容区块 -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ZUTOMAYO. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script><!-- 引入主JavaScript文件 -->
+    <script src="{{ url_for('static', filename='js/player-carousel.js') }}"></script><!-- 引入播放器轮播功能 -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

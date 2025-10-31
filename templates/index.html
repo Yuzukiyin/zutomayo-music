@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}ずっと真夜中でいいのに。{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1 class="hero-title">ずっと真夜中でいいのに。</h1><!-- 主标题 -->
+</section>
+
+<article class="disco-wrap"><!-- 唱片集锦 -->
+    <section class="disco-section"><!-- 唱片列表 -->
+        {% for album in albums %}
+        <div class="disco-item"><!-- 单个唱片项 -->
+            <div class="disco-inner"><!-- 唱片内容 -->
+                <p class="disco-date"><time>{{ album.release_date }}</time></p><!-- 发布日期 -->
+                <h3 class="disco-title">{{ album.title }}</h3><!-- 专辑标题 -->
+                <figure class="disco-image"><!-- 专辑封面 -->
+                    <a href="/album/{{ album.id }}"><!-- 链接到专辑详情页 -->
+                        <img src="{{ album.cover_image }}" alt="{{ album.title }}" loading="lazy"><!-- 封面图片 -->
+                        <div class="image-overlay"><!-- 悬停覆盖层 -->
+                            <span class="overlay-text" data-texts="{{ album.hover_texts }}">VIEW DETAILS</span><!-- 悬停文字 -->
+                        </div>
+                    </a>
+                </figure>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- 填充空白项以保持网格对齐 -->
+        <div class="disco-item disco-empty"></div>
+        <div class="disco-item disco-empty"></div>
+        <div class="disco-item disco-empty"></div>
+    </section>
+</article>
+{% endblock %}
