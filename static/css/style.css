@@ -984,7 +984,7 @@ footer p {
     /* 将按钮移到容器外下方 */
     .carousel-container .carousel-btn {
         position: absolute !important;
-        bottom: -4.5rem !important; /* 调整位置与导航点对齐 */
+        bottom: -5rem !important; /* 调整位置与导航点对齐 */
         top: auto !important;
         left: auto !important;
         right: auto !important;
@@ -1735,14 +1735,7 @@ footer p {
         height: 86px;
     }
     
-    .youtube-player iframe,
-    .bilibili-player iframe {
-        width: 100% !important;
-        max-width: 100%;
-        height: auto;
-        aspect-ratio: 680 / 383;
-        border-radius: 8px;
-    }
+    /* 768px下的播放器比例已在900px断点定义,不需要重复 */
     
     .player-controls {
         margin-top: 1rem;
@@ -1761,14 +1754,8 @@ footer p {
         height: 80px;
     }
     
-    .youtube-player iframe,
-    .bilibili-player iframe {
-        width: 100% !important;
-        height: auto;
-        aspect-ratio: 16 / 9;
-        min-height: 200px;
-        border-radius: 6px;
-    }
+    /* 480px下也使用padding-bottom技巧保持680:383比例,避免黑块 */
+    /* 这些样式已在900px断点定义,这里不需要重复覆盖 */
     
     .player-controls button {
         padding: 0.6rem 1rem;
