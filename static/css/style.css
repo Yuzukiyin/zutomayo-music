@@ -984,7 +984,7 @@ footer p {
     /* 将按钮移到容器外下方 */
     .carousel-container .carousel-btn {
         position: absolute !important;
-        bottom: -4rem !important;
+        bottom: -4.5rem !important; /* 调整位置与导航点对齐 */
         top: auto !important;
         left: auto !important;
         right: auto !important;
@@ -1259,11 +1259,10 @@ footer p {
     }
 }
 
-@media (max-width: 475px) {/* 极小屏幕调整 */
-    /* Album 和 Track 页面宽度占满屏幕 */
+@media (max-width: 475px) {/* 极小屏幕特有调整 */
+    /* Album 和 Track 页面宽度占满屏幕（475px特有） */
     .album-detail,
     .track-detail {
-        max-width: 100%;
         padding-left: 0;
         padding-right: 0;
     }
@@ -1282,118 +1281,11 @@ footer p {
         aspect-ratio: 330 / 86;
     }
     
-    /* YouTube 播放器缩放 - 使用 padding-bottom 技巧保证比例 */
-    .youtube-player {
-        position: relative !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-bottom: 56.32% !important; /* 383/680 = 0.5632 */
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-    
-    .youtube-player iframe {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-    
-    /* Bilibili 播放器缩放 - 使用 padding-bottom 技巧保证比例 */
-    .bilibili-player {
-        position: relative !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-bottom: 56.32% !important; /* 383/680 = 0.5632 */
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-    
-    .bilibili-player iframe {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-    
     /* 通用播放器缩放 */
     .generic-player iframe {
         width: 100%;
         height: auto;
         min-height: 150px;
-    }
-    
-    /* === 轮播按钮重新布局：移到底部与指示器同行 === */
-    
-    /* 1. 隐藏播放器两侧的原始按钮位置 */
-    .carousel-container .carousel-btn {
-        position: static !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        transform: none !important;
-        width: 36px !important;
-        height: 36px !important;
-        margin: 0 !important;
-    }
-    
-    /* 2. 让按钮的 SVG 图标缩小 */
-    .carousel-btn svg {
-        width: 18px !important;
-        height: 18px !important;
-    }
-    
-    /* 3. 调整指示器容器，使其能容纳按钮 */
-    .carousel-indicators {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 12px !important;
-        margin-top: 1rem !important;
-        flex-wrap: nowrap !important;
-    }
-    
-    /* 4. 将按钮移到指示器容器外，使用 flexbox 重新排列 */
-    /* 注意：这需要配合下面的样式调整父容器 */
-    .player-carousel {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    
-    /* 5. 创建底部控制栏的效果 */
-    .carousel-container {
-        order: 1 !important;
-        position: relative !important;
-    }
-    
-    /* 6. 将原本在 container 内的按钮移出到底部 */
-    /* 由于 HTML 结构限制，我们让按钮浮动到底部 */
-    .carousel-container .carousel-btn.prev,
-    .carousel-container .carousel-btn.next {
-        position: absolute !important;
-        bottom: -4rem !important; /* 移到容器外下方 */
-        top: auto !important;
-        transform: none !important;
-    }
-    
-    .carousel-container .carousel-btn.prev {
-        left: calc(50% - 100px) !important;
-    }
-    
-    .carousel-container .carousel-btn.next {
-        right: calc(50% - 100px) !important;
-    }
-    
-    .carousel-btn:hover {
-        transform: scale(1.1) !important;
-    }
-    
-    /* 7. 调整指示器位置，确保与按钮对齐 */
-    .carousel-indicators {
-        order: 2 !important;
-        margin-top: 3rem !important; /* 为按钮留出空间 */
     }
 }
 
