@@ -62,20 +62,42 @@ def generate_album_hover_text(album_id):
         
         # 如果有可用的歌曲文件
         if available_tracks:
+            total_texts = 30  # 总共生成30组悬停文本
+            num_tracks = len(available_tracks)
+            
+            # 计算每首歌应该生成的文本数量
+            base_count = total_texts // num_tracks  # 每首歌的基础数量
+            remainder = total_texts % num_tracks     # 余数
+            
             hover_texts = []
-            # 生成最多30组悬停文本
-            for _ in range(min(30, len(available_tracks))):
-                # 随机选择一首歌
-                track_data = random.choice(available_tracks)
+            
+            # 为每首歌生成基础数量的文本
+            for track_data in available_tracks:
                 track_title = track_data['title']
                 lines = track_data['lines']
                 
-                # 从这首歌中随机抽取两行
-                if len(lines) >= 2:
-                    sample_lines = random.sample(lines, 2)
-                    # 格式: "第一行\n第二行\n——歌曲名"
-                    hover_text = '\n'.join(sample_lines) + f'\n——{track_title}'
-                    hover_texts.append(hover_text)
+                # 为这首歌生成 base_count 组文本
+                for _ in range(base_count):
+                    if len(lines) >= 2:
+                        sample_lines = random.sample(lines, 2)
+                        hover_text = '\n'.join(sample_lines) + f'\n——{track_title}'
+                        hover_texts.append(hover_text)
+            
+            # 余数部分随机分配给各首歌
+            if remainder > 0:
+                # 随机选择 remainder 首歌，每首再生成一组
+                random_tracks = random.sample(available_tracks, min(remainder, num_tracks))
+                for track_data in random_tracks:
+                    track_title = track_data['title']
+                    lines = track_data['lines']
+                    
+                    if len(lines) >= 2:
+                        sample_lines = random.sample(lines, 2)
+                        hover_text = '\n'.join(sample_lines) + f'\n——{track_title}'
+                        hover_texts.append(hover_text)
+            
+            # 打乱顺序，避免按歌曲顺序显示
+            random.shuffle(hover_texts)
             
             # 用 | 分隔多组文本，返回给前端
             return '|'.join(hover_texts) if hover_texts else None
