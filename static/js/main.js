@@ -95,3 +95,30 @@ function shareAlbum(albumId, albumTitle) {
         });
     }
 }
+
+// 返回顶部按钮功能
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    if (backToTopBtn) {
+        // 监听页面滚动
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            // 当滚动超过页面60%时显示按钮
+            if (scrollPercent > 60) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        // 点击按钮返回顶部
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
