@@ -1155,6 +1155,14 @@ footer p {
         max-width: 450px;
         margin: 0 auto;
     }
+    
+    /* 隐藏曲目表格的 Duration 列（第3列）和播放按钮列（第4列） */
+    .tracks-table th:nth-child(3),
+    .tracks-table td:nth-child(3),
+    .tracks-table th:nth-child(4),
+    .tracks-table td:nth-child(4) {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {/* 超小屏幕调整 */
