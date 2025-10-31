@@ -1193,7 +1193,7 @@ footer p {
         width: 100%;
         max-width: 100%;
         height: auto;
-        aspect-ratio: 680 / 400;
+        aspect-ratio: 680 / 383;
     }
     
     /* Bilibili 播放器缩放 */
@@ -1201,7 +1201,7 @@ footer p {
         width: 100%;
         max-width: 100%;
         height: auto;
-        aspect-ratio: 680 / 400;
+        aspect-ratio: 680 / 383;
     }
     
     /* 通用播放器缩放 */
@@ -1209,6 +1209,42 @@ footer p {
         width: 100%;
         height: auto;
         min-height: 150px;
+    }
+    
+    /* 轮播按钮调整：缩小尺寸，移到轮播指示器两侧 */
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        position: relative;
+        top: auto;
+        transform: none;
+        margin: 0 8px;
+    }
+    
+    .carousel-btn.prev {
+        left: auto;
+    }
+    
+    .carousel-btn.next {
+        right: auto;
+    }
+    
+    .carousel-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .carousel-btn:hover {
+        transform: scale(1.1);
+    }
+    
+    /* 将按钮和指示器放在同一行 */
+    .carousel-indicators {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        margin-top: 1rem;
     }
 }
 
@@ -1663,7 +1699,7 @@ footer p {
         width: 100% !important;
         max-width: 100%;
         height: auto;
-        aspect-ratio: 680 / 400;
+        aspect-ratio: 680 / 383;
         border-radius: 8px;
     }
     
