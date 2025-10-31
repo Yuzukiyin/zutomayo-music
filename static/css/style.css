@@ -938,7 +938,101 @@ footer p {
 @media (max-width: 900px) {/* 小于 900px 屏幕调整 */
     .album-detail,
     .track-detail {
-        max-width: 98%;
+        max-width: 100%;
+    }
+    
+    /* === 播放器比例调整：使用 padding-bottom 技巧 === */
+    
+    /* YouTube 播放器缩放 - 680:383 比例 */
+    .youtube-player {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-bottom: 56.32% !important; /* 383/680 = 0.5632 */
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .youtube-player iframe {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    /* Bilibili 播放器缩放 - 680:383 比例 */
+    .bilibili-player {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-bottom: 56.32% !important; /* 383/680 = 0.5632 */
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .bilibili-player iframe {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    /* === 轮播按钮重新布局：移到底部与指示器同行 === */
+    
+    /* 将按钮移到容器外下方 */
+    .carousel-container .carousel-btn {
+        position: absolute !important;
+        bottom: -4rem !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 36px !important;
+        height: 36px !important;
+        margin: 0 !important;
+    }
+    
+    .carousel-container .carousel-btn.prev {
+        left: calc(50% - 100px) !important;
+    }
+    
+    .carousel-container .carousel-btn.next {
+        right: calc(50% - 100px) !important;
+    }
+    
+    .carousel-btn svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    
+    .carousel-btn:hover {
+        transform: scale(1.1) !important;
+    }
+    
+    /* 调整指示器位置 */
+    .carousel-indicators {
+        margin-top: 3rem !important;
+    }
+    
+    .player-carousel {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .carousel-container {
+        order: 1 !important;
+        position: relative !important;
+    }
+    
+    .carousel-indicators {
+        order: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        flex-wrap: nowrap !important;
     }
 }
 
