@@ -1188,20 +1188,40 @@ footer p {
         aspect-ratio: 330 / 86;
     }
     
-    /* YouTube 播放器缩放 */
-    .youtube-player iframe {
+    /* YouTube 播放器缩放 - 使用 padding-bottom 技巧保证比例 */
+    .youtube-player {
+        position: relative !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: auto !important;
-        aspect-ratio: 680 / 383 !important;
+        padding-bottom: 56.32% !important; /* 383/680 = 0.5632 */
+        height: 0 !important;
+        overflow: hidden !important;
     }
     
-    /* Bilibili 播放器缩放 */
-    .bilibili-player iframe {
+    .youtube-player iframe {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    /* Bilibili 播放器缩放 - 使用 padding-bottom 技巧保证比例 */
+    .bilibili-player {
+        position: relative !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: auto !important;
-        aspect-ratio: 680 / 383 !important;
+        padding-bottom: 56.32% !important; /* 383/680 = 0.5632 */
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .bilibili-player iframe {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
     }
     
     /* 通用播放器缩放 */
