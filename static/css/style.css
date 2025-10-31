@@ -175,7 +175,7 @@ main {
 
 .disco-section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 增加最小宽度，让卡片更大 */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 默认自适应，最小280px */
     gap: 3rem 2rem;/* 行间距和列间距 */
     padding: 2rem 0;
 }
@@ -329,10 +329,14 @@ main {
    专辑详情页
    ===================================================== */
 .album-detail {/* 专辑详情页容器样式 */
+    max-width: 80%;  /* 限制宽度为屏幕的80% */
+    margin-left: auto;  /* 居中显示 */
+    margin-right: auto;  /* 居中显示 */
     background: rgba(255, 255, 255, 0.02);/* 半透明背景，更融合整体风格 */
     border: 1px solid rgba(255, 255, 255, 0.05);/* 细边框 */
     padding: 3rem;/* 内边距 */
-    margin: 2rem 0;/* 上下外边距 */
+    margin-top: 2rem;/* 上外边距 */
+    margin-bottom: 2rem;/* 下外边距 */
 }
 
 .album-header {/* 专辑头部信息布局 */
@@ -495,8 +499,11 @@ footer p {
    单曲详情页
    ===================================================== */
 .track-detail {
-    max-width: 1000px;
-    margin: 2rem auto;
+    max-width: 80%;  /* 限制宽度为屏幕的80% */
+    margin-left: auto;  /* 居中显示 */
+    margin-right: auto;  /* 居中显示 */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     padding: 0 2rem;
 }
 
@@ -745,14 +752,209 @@ footer p {
 /* =====================================================
    响应式设计
    ===================================================== */
+/* 超大屏幕 (2560px+) */
+@media (min-width: 2560px) {
+    .container {
+        max-width: 2200px;
+        padding: 0 60px;
+    }
+    
+    .disco-section {
+        grid-template-columns: repeat(4, 1fr); /* 4列 */
+        gap: 4rem 3rem;
+    }
+    
+    /* 专辑卡片放大 */
+    .disco-date {
+        padding: 2rem 2rem 0.8rem;
+        font-size: 1.1rem;
+        letter-spacing: 3px;
+    }
+    
+    .disco-title {
+        padding: 0 2rem;
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        letter-spacing: 1.5px;
+        line-height: 1.8;
+    }
+    
+    .hero-title {
+        font-size: 5rem;
+        letter-spacing: 12px;
+    }
+    
+    .hero-subtitle {
+        font-size: 2rem;
+        letter-spacing: 6px;
+    }
+    
+    .album-header {
+        grid-template-columns: 450px 1fr;
+        gap: 4rem;
+    }
+    
+    .album-meta h1 {
+        font-size: 3.5rem;
+    }
+    
+    /* Track 页面优化 */
+    .track-detail {
+        padding: 0 3rem;
+    }
+    
+    .track-header {
+        grid-template-columns: 500px 1fr;
+        gap: 4rem;
+        padding: 3rem;
+    }
+    
+    .track-title-main {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+    
+    .track-album-name {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .track-meta {
+        font-size: 1.3rem;
+        gap: 3rem;
+    }
+    
+    .track-player {
+        padding: 3rem;
+        margin-bottom: 4rem;
+    }
+    
+    .track-lyrics {
+        padding: 3rem;
+    }
+    
+    .lyrics-line {
+        font-size: 1.3rem;
+        line-height: 2.5;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-back {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* 大屏幕 (1440px - 2559px) */
+@media (min-width: 1440px) and (max-width: 2559px) {
+    .container {
+        max-width: 1600px;
+        padding: 0 50px;
+    }
+    
+    .disco-section {
+        grid-template-columns: repeat(4, 1fr); /* 4列 */
+        gap: 3.5rem 2.5rem;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+        letter-spacing: 10px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+        letter-spacing: 5px;
+    }
+    
+    .album-header {
+        grid-template-columns: 400px 1fr;
+        gap: 3rem;
+    }
+    
+    .album-meta h1 {
+        font-size: 3rem;
+    }
+    
+    /* Track 页面优化 */
+    .track-detail {
+        padding: 0 2.5rem;
+    }
+    
+    .track-header {
+        grid-template-columns: 450px 1fr;
+        gap: 3.5rem;
+        padding: 2.5rem;
+    }
+    
+    .track-title-main {
+        font-size: 3.5rem;
+        margin-bottom: 1.8rem;
+    }
+    
+    .track-album-name {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .track-meta {
+        font-size: 1.2rem;
+        gap: 2.5rem;
+    }
+    
+    .track-player {
+        padding: 2.5rem;
+        margin-bottom: 3.5rem;
+    }
+    
+    .track-lyrics {
+        padding: 2.5rem;
+    }
+    
+    .lyrics-line {
+        font-size: 1.2rem;
+        line-height: 2.3;
+        margin-bottom: 0.9rem;
+    }
+    
+    .btn-back {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.05rem;
+    }
+}
+
 @media (max-width: 1024px) {/* 中等屏幕调整 */
     .disco-section {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+    }
+    
+    .disco-date {
+        font-size: 0.85rem;
+    }
+    
+    .disco-title {
+        font-size: 1rem;
     }
     
     .album-header {
         grid-template-columns: 300px 1fr;
+        gap: 2rem;
+    }
+    
+    /* Track 页面优化 */
+    .track-header {
+        grid-template-columns: 300px 1fr;
+        gap: 2.5rem;
+        padding: 2rem;
+    }
+    
+    .track-title-main {
+        font-size: 2.5rem;
+    }
+    
+    .track-meta {
+        font-size: 1rem;
         gap: 2rem;
     }
 }
@@ -762,47 +964,528 @@ footer p {
         padding: 0 20px;
     }
     
+    /* 导航栏优化 */
+    .navbar {
+        --nav-h: 6vh;
+        padding: 0.5rem 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    /* 首页标题优化 */
     .hero-title {
         font-size: 2.5rem;
         letter-spacing: 4px;
+        margin-bottom: 1rem;
     }
     
     .hero-subtitle {
         font-size: 1rem;
+        letter-spacing: 2px;
     }
     
+    /* 专辑网格两列显示 */
     .disco-section {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem 0;
     }
     
+    /* 专辑卡片优化 */
+    .disco-item {
+        max-width: 100%;
+    }
+    
+    .disco-date {
+        padding: 1rem 1rem 0.4rem;
+        font-size: 0.8rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .disco-title {
+        padding: 0 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* 专辑详情页优化 */
     .album-header {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .album-cover {
+        max-width: 100%;
+        margin: 0 auto;
     }
     
     .album-meta h1 {
         font-size: 2rem;
+        text-align: center;
+    }
+    
+    .album-meta .release-info {
+        text-align: center;
+        font-size: 0.95rem;
+    }
+    
+    /* Track 页面优化 */
+    .track-detail {
+        padding: 0 1.5rem;
+    }
+    
+    .track-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .track-cover {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .track-title-main {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .track-album-name {
+        text-align: center;
+        font-size: 0.85rem;
+    }
+    
+    .track-meta {
+        justify-content: center;
+        font-size: 0.95rem;
+        gap: 1.5rem;
+    }
+    
+    .track-player {
+        padding: 1.5rem;
+    }
+    
+    .track-lyrics {
+        padding: 1.5rem;
+    }
+    
+    /* 曲目表格优化 */
+    .tracks-table {
+        font-size: 0.9rem;
     }
     
     .tracks-table th,
     .tracks-table td {
-        padding: 0.8rem;
+        padding: 0.8rem 0.5rem;
         font-size: 0.9rem;
+    }
+    
+    .tracks-table th:first-child,
+    .tracks-table td:first-child {
+        width: 40px;
+    }
+    
+    /* 按钮优化 */
+    .btn-small {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    /* 歌曲详情页优化 */
+    .track-detail {
+        padding: 1.5rem;
+    }
+    
+    .track-header h1 {
+        font-size: 2rem;
+    }
+    
+    .track-header .track-info {
+        font-size: 0.95rem;
+    }
+    
+    /* 歌词区域优化 */
+    .track-lyrics {
+        padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .lyrics-line {
+        font-size: 1rem;
+        line-height: 2;
+        margin-bottom: 0.7rem;
+    }
+    
+    .no-lyrics {
+        padding: 2rem 1rem;
+    }
+}
+
+/* 小平板及大手机 (600px以下) - 单列显示 */
+@media (max-width: 600px) {
+    .disco-section {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+    
+    .disco-item {
+        max-width: 450px;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 480px) {/* 超小屏幕调整 */
-    .logo {
-        font-size: 1.3rem;
+    .container {
+        padding: 0 15px;
     }
     
+    /* 导航栏紧凑显示 */
+    .navbar {
+        --nav-h: 7vh;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+    
+    /* 首页标题紧凑 */
     .hero-title {
         font-size: 2rem;
         letter-spacing: 2px;
+        margin-bottom: 0.8rem;
     }
     
+    .hero-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    /* 专辑卡片优化 */
+    .disco-section {
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+    
+    .disco-item {
+        border-radius: 8px;
+        max-width: 100%;
+    }
+    
+    .disco-date {
+        padding: 1rem 1rem 0.3rem;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .disco-title {
+        padding: 0 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* 专辑详情优化 */
     .album-detail {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .album-meta h1 {
+        font-size: 1.8rem;
+    }
+    
+    .album-meta .release-info {
+        font-size: 0.85rem;
+    }
+    
+    /* Track 页面紧凑 */
+    .track-detail {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+    }
+    
+    .track-header {
+        padding: 1rem;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .track-cover {
+        max-width: 300px;
+    }
+    
+    .track-title-main {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+    
+    .track-album-name {
+        font-size: 0.8rem;
+    }
+    
+    .track-meta {
+        font-size: 0.85rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .track-player {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .track-lyrics {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .btn-back {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    /* 表格紧凑显示 */
+    .tracks-table {
+        font-size: 0.85rem;
+    }
+    
+    .tracks-table th,
+    .tracks-table td {
+        padding: 0.6rem 0.3rem;
+        font-size: 0.85rem;
+    }
+    
+    .tracks-table th:first-child,
+    .tracks-table td:first-child {
+        width: 35px;
+        padding-left: 0.5rem;
+    }
+    
+    /* 按钮紧凑 */
+    .btn-small {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.8rem;
+    }
+    
+    .track-title {
+        font-size: 0.95rem;
+    }
+    
+    /* 歌曲详情紧凑 */
+    .track-detail {
+        padding: 1rem;
+    }
+    
+    .track-header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .track-header .track-info {
+        font-size: 0.85rem;
+    }
+    
+    /* 歌词区域优化 */
+    .lyrics-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .lyrics-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .lyrics-content {
+        font-size: 0.9rem;
+        line-height: 1.8;
+    }
+    
+    .track-lyrics {
+        padding: 1rem 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .lyrics-line {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        margin-bottom: 0.6rem;
+    }
+    
+    .no-lyrics {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .no-lyrics p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 超超小屏幕 (360px以下) - 小尺寸手机优化 */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    /* 导航栏最小化 */
+    .logo {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* 首页标题最小化 */
+    .hero-title {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* 专辑卡片最小化 */
+    .disco-section {
+        gap: 1rem;
+    }
+    
+    .disco-date {
+        padding: 0.8rem 0.8rem 0.3rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .disco-title {
+        padding: 0 0.8rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* 专辑详情最小化 */
+    .album-meta h1 {
+        font-size: 1.5rem;
+    }
+    
+    .album-meta .release-info {
+        font-size: 0.8rem;
+    }
+    
+    /* Track 页面最小化 */
+    .track-detail {
+        padding: 0 0.8rem;
+        margin: 1rem auto;
+    }
+    
+    .track-header {
+        padding: 0.8rem;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .track-cover {
+        max-width: 250px;
+    }
+    
+    .track-title-main {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .track-album-name {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .track-meta {
+        font-size: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .track-player {
+        padding: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .track-lyrics {
+        padding: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn-back {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    /* 表格超紧凑 */
+    .tracks-table {
+        font-size: 0.8rem;
+    }
+    
+    .tracks-table th,
+    .tracks-table td {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .tracks-table th:first-child,
+    .tracks-table td:first-child {
+        width: 30px;
+        padding-left: 0.3rem;
+    }
+    
+    /* 按钮最小化 */
+    .btn-small {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .track-title {
+        font-size: 0.9rem;
+    }
+    
+    /* 歌曲详情最小化 */
+    .track-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .track-header .track-info {
+        font-size: 0.8rem;
+    }
+    
+    /* 歌词区域最小化 */
+    .lyrics-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .lyrics-content {
+        font-size: 0.85rem;
+        line-height: 1.7;
+    }
+    
+    .track-lyrics {
+        padding: 0.8rem 0.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .lyrics-line {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin-bottom: 0.5rem;
+    }
+    
+    .no-lyrics {
+        padding: 1.2rem 0.5rem;
+    }
+    
+    .no-lyrics p {
+        font-size: 0.85rem;
+    }
+    
+    .no-lyrics p:first-child {
+        font-size: 1rem;
     }
 }
 
@@ -842,7 +1525,7 @@ footer p {
 
 .youtube-player iframe {
     width: 680px;
-    height: 400px;
+    height: 383px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
@@ -857,7 +1540,7 @@ footer p {
 
 .bilibili-player iframe {
     width: 680px;
-    height: 400px;
+    height: 383px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
@@ -894,34 +1577,72 @@ footer p {
     .track-player {
         padding: 1.5rem 1rem;
     }
-    /* 网易云：固定小播放器 */
+    
     .netease-player iframe {
-        width: 100%;
+        width: 100% !important;
         max-width: 330px;
         height: 86px;
-        border-radius: 8px;
     }
-    /* YouTube/Bilibili：按 680x400 比例自适应 */
+    
     .youtube-player iframe,
     .bilibili-player iframe {
-        width: 100%;
-        max-width: 680px;
-        aspect-ratio: 17 / 10;
+        width: 100% !important;
+        max-width: 100%;
         height: auto;
+        aspect-ratio: 680 / 400;
         border-radius: 8px;
+    }
+    
+    .player-controls {
+        margin-top: 1rem;
     }
 }
 
 @media (max-width: 480px) {
     .track-player {
-        padding: 1rem;
+        padding: 1rem 0.5rem;
         margin: 1rem 0;
     }
-    /* 小屏：按 680x400 比例估算高度 */
+    
+    .netease-player iframe {
+        width: 100% !important;
+        max-width: 300px;
+        height: 80px;
+    }
+    
     .youtube-player iframe,
     .bilibili-player iframe {
-        height: calc(100vw * 400 / 680);
-        min-height: 220px;
+        width: 100% !important;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        min-height: 200px;
+        border-radius: 6px;
+    }
+    
+    .player-controls button {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .track-player {
+        padding: 0.8rem 0.3rem;
+    }
+    
+    .netease-player iframe {
+        max-width: 280px;
+        height: 75px;
+    }
+    
+    .youtube-player iframe,
+    .bilibili-player iframe {
+        min-height: 180px;
+    }
+    
+    .player-controls button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -1051,6 +1772,11 @@ footer p {
 
 /* 响应式调整 */
 @media (max-width: 768px) {
+    .carousel-container {
+        max-width: 100%;
+        padding: 0 50px;
+    }
+    
     .carousel-btn {
         width: 44px;
         height: 44px;
@@ -1058,11 +1784,16 @@ footer p {
     }
     
     .carousel-btn.prev {
-        left: -50px;
+        left: -5px;
     }
     
     .carousel-btn.next {
-        right: -50px;
+        right: -5px;
+    }
+    
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
     }
     
     .carousel-indicators {
@@ -1072,6 +1803,10 @@ footer p {
 }
 
 @media (max-width: 480px) {
+    .carousel-container {
+        padding: 0 35px;
+    }
+    
     .carousel-btn {
         width: 40px;
         height: 40px;
@@ -1079,11 +1814,16 @@ footer p {
     }
     
     .carousel-btn.prev {
-        left: -35px;
+        left: -5px;
     }
     
     .carousel-btn.next {
-        right: -35px;
+        right: -5px;
+    }
+    
+    .carousel-btn svg {
+        width: 18px;
+        height: 18px;
     }
     
     .carousel-indicators {
@@ -1099,5 +1839,120 @@ footer p {
     
     .indicator.active {
         width: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .carousel-container {
+        padding: 0 30px;
+    }
+    
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .carousel-btn.prev {
+        left: -3px;
+    }
+    
+    .carousel-btn.next {
+        right: -3px;
+    }
+    
+    .carousel-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .carousel-indicators {
+        gap: 6px;
+    }
+    
+    .indicator {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .indicator.active {
+        width: 20px;
+    }
+}
+
+/* =====================================================
+   通用响应式优化
+   ===================================================== */
+/* 触摸设备优化 - 移除悬停效果，增加点击反馈 */
+@media (hover: none) and (pointer: coarse) {
+    .disco-item:hover {
+        transform: none;
+    }
+    
+    .disco-item:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+    
+    .btn-small:hover {
+        transform: none;
+    }
+    
+    .btn-small:active {
+        transform: scale(0.95);
+    }
+    
+    .carousel-btn:hover {
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.4);
+    }
+    
+    .carousel-btn:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+}
+
+/* 横屏优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .navbar {
+        --nav-h: 8vh;
+    }
+    
+    .track-player {
+        padding: 1rem;
+    }
+}
+
+/* 打印样式优化 */
+@media print {
+    .navbar,
+    .carousel-btn,
+    .carousel-indicators,
+    .btn-small {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .disco-item,
+    .track-detail,
+    .album-detail {
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+    
+    .lyrics-line {
+        color: black;
     }
 }
