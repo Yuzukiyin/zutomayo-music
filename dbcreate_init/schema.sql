@@ -6,8 +6,7 @@ CREATE TABLE albums (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     release_date TEXT,
-    cover_image TEXT,
-    hover_texts TEXT  -- 存储多组悬停文字,用 | 分隔
+    cover_image TEXT
 );
 
 -- 曲目表

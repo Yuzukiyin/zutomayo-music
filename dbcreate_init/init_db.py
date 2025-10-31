@@ -17,35 +17,19 @@ with open('schema.sql', 'r', encoding='utf-8') as f:
 
 
 # 插入 ZUTOMAYO 专辑数据
-# 格式: hover_texts = '歌词1\n——歌曲名1|歌词2\n——歌曲名2|歌词3\n——歌曲名3'
 albums_data = [
- ('正しい偽りからの起床', '2018.11.14', 'https://zutomayo.net/upload/DISCOGRAPHY/5/5ef5b53fcd369.jpeg', 
-  '木星も 月も 突き抜けなきゃ 叶わぬ声も触れられないもん\n——サターン|なりたい自分と なれない自分 どうせどうせが安心をくれたような\n——脳裏上のクラッカー|小さな船流れ出す ただ力の抜けた光る方へ\n——君がいて水になる'),
-  
-('今は今で誓いは笑みで', '2019.6.12', 'https://zutomayo.net/upload/DISCOGRAPHY/8/5ef5b607e35c6.jpeg', 
- 'ただ 思い出して 終わらないで 抱きしめたいように 容易い笑みじゃ 纏めきれぬほどに\n——正義|いつか 叶えられるまで 辿り着けないよ ふと よぎるたび 歌にしまうんだよ\n——またね幻|笑って 犠牲にしたって本心だけ 誰もわからず乏しい罠\n——正義'),
- 
-('潜潜話', '2019.10.30', 'https://zutomayo.net/upload/DISCOGRAPHY/9/5f0305ec907bf.jpeg', 
- '優勝候補に毎回当たるからには 負け方くらいこっちが決めさせてもらうわ\n——居眠り遠征隊|どれだけ単純でも 遠回して伝えるから どれだけ複雑でも 辿り着いてしまうから\n——蹴っ飛ばした毛布|ひとりで平気だけど太陽はあかるいけど きみの足跡は消えないよ\n——Dear. Mr「F」'),
- 
-('朗らかな皮膚とて不服', '2020.8.5', 'https://zutomayo.net/upload/DISCOGRAPHY/11/5f030dd521f04.jpeg', 
- 'お勉強しといてよ 解いといてよ\n——お勉強しといてよ|一言目はきっと 久しぶり\n——Ham|もっと 仕草に揺れて 抑えきれないほどに リズムがなきゃ話も味っけない\n——MILABO'),
- 
-('ぐされ', '2021.2.10', 'https://zutomayo.net/upload/DISCOGRAPHY/16/5fa3f3c654836.jpeg', 
- '正しくなれない 霧が毒をみた 片っ端から確かめたくて\n——正しくなれない|転回を嫌い 荒れ果てたこの世を ねぇどうしたい\n——勘ぐれい|何を感じたらいい 涙を教えても云えない\n——過眠'),
- 
-('伸び仕草懲りて暇乞い', '2022.2.16', 'https://zutomayo.net/upload/DISCOGRAPHY/26/20220216.jpg', 
- 'ただ眩しくなっただけなのに 憧れに似た\n——袖のキルト|もっと期待したいし この性格じゃどうやって\n——猫リセット|もう居ないのに 惹かれ合うのに 一瞬の夏だったよ\n——ばかじゃないのに'),
- 
-('沈香学', '2023.6.7', 'https://etbr-cms-site.s3.ap-northeast-1.amazonaws.com/zutomayo.net/share/release/Jinkougaku_H1.jpg', 
- '何か出来そうな夜更かし 成仏させた詩 特別なキャラに期待はしないで\n——花一匁|繰返し笑い合うんだ 居たくなる旅\n——夏枯れ|未完成で 低姿勢で 気持ち任せです\n——消えてしまいそうです'),
- 
-('虚仮の一念海馬に託す', '2024.10.23', 'https://etbr-cms-site.s3.ap-northeast-1.amazonaws.com/zutomayo.net/share/release/31/jkt.jpg', 
- '全身演じきってよ 全開でその程度？不器用で優しいだけでは 超えらんないです\n——TAIDADA|誰が僕を わかった気になれんのかね 夜は情け 肺が鳴け\n——海馬成長痛|泣きたい夜があるなら そっと 隣に居させて 教えてよ いつでも\n——Blues in the Closet'),
+    ('正しい偽りからの起床', '2018.11.14', 'https://zutomayo.net/upload/DISCOGRAPHY/5/5ef5b53fcd369.jpeg'),
+    ('今は今で誓いは笑みで', '2019.6.12', 'https://zutomayo.net/upload/DISCOGRAPHY/8/5ef5b607e35c6.jpeg'),
+    ('潜潜話', '2019.10.30', 'https://zutomayo.net/upload/DISCOGRAPHY/9/5f0305ec907bf.jpeg'),
+    ('朗らかな皮膚とて不服', '2020.8.5', 'https://zutomayo.net/upload/DISCOGRAPHY/11/5f030dd521f04.jpeg'),
+    ('ぐされ', '2021.2.10', 'https://zutomayo.net/upload/DISCOGRAPHY/16/5fa3f3c654836.jpeg'),
+    ('伸び仕草懲りて暇乞い', '2022.2.16', 'https://zutomayo.net/upload/DISCOGRAPHY/26/20220216.jpg'),
+    ('沈香学', '2023.6.7', 'https://etbr-cms-site.s3.ap-northeast-1.amazonaws.com/zutomayo.net/share/release/Jinkougaku_H1.jpg'),
+    ('虚仮の一念海馬に託す', '2024.10.23', 'https://etbr-cms-site.s3.ap-northeast-1.amazonaws.com/zutomayo.net/share/release/31/jkt.jpg'),
 ]
 
 cursor.executemany(
-    'INSERT INTO albums (title, release_date, cover_image, hover_texts) VALUES (?, ?, ?, ?)',
+    'INSERT INTO albums (title, release_date, cover_image) VALUES (?, ?, ?)',
     albums_data
 )
 
