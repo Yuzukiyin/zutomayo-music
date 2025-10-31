@@ -1211,39 +1211,75 @@ footer p {
         min-height: 150px;
     }
     
-    /* 轮播按钮调整：移到底部指示器旁边 */
-    .carousel-container {
-        position: static; /* 改为静态定位 */
-    }
+    /* === 轮播按钮重新布局：移到底部与指示器同行 === */
     
-    .player-carousel {
-        position: relative; /* 轮播外层容器作为定位参考 */
-    }
-    
-    .carousel-btn {
-        position: absolute !important;
+    /* 1. 隐藏播放器两侧的原始按钮位置 */
+    .carousel-container .carousel-btn {
+        position: static !important;
         top: auto !important;
-        bottom: 1rem !important; /* 定位到底部，与指示器同高度 */
-        transform: translateY(0) !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
         width: 36px !important;
         height: 36px !important;
+        margin: 0 !important;
     }
     
-    .carousel-btn.prev {
-        left: calc(50% - 120px) !important; /* 在指示器左侧 */
-    }
-    
-    .carousel-btn.next {
-        right: calc(50% - 120px) !important; /* 在指示器右侧 */
-    }
-    
+    /* 2. 让按钮的 SVG 图标缩小 */
     .carousel-btn svg {
         width: 18px !important;
         height: 18px !important;
     }
     
+    /* 3. 调整指示器容器，使其能容纳按钮 */
+    .carousel-indicators {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        margin-top: 1rem !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    /* 4. 将按钮移到指示器容器外，使用 flexbox 重新排列 */
+    /* 注意：这需要配合下面的样式调整父容器 */
+    .player-carousel {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* 5. 创建底部控制栏的效果 */
+    .carousel-container {
+        order: 1 !important;
+        position: relative !important;
+    }
+    
+    /* 6. 将原本在 container 内的按钮移出到底部 */
+    /* 由于 HTML 结构限制，我们让按钮浮动到底部 */
+    .carousel-container .carousel-btn.prev,
+    .carousel-container .carousel-btn.next {
+        position: absolute !important;
+        bottom: -4rem !important; /* 移到容器外下方 */
+        top: auto !important;
+        transform: none !important;
+    }
+    
+    .carousel-container .carousel-btn.prev {
+        left: calc(50% - 100px) !important;
+    }
+    
+    .carousel-container .carousel-btn.next {
+        right: calc(50% - 100px) !important;
+    }
+    
     .carousel-btn:hover {
         transform: scale(1.1) !important;
+    }
+    
+    /* 7. 调整指示器位置，确保与按钮对齐 */
+    .carousel-indicators {
+        order: 2 !important;
+        margin-top: 3rem !important; /* 为按钮留出空间 */
     }
 }
 
