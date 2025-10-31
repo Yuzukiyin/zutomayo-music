@@ -104,6 +104,8 @@ def api_search():
     })
 
 
+# Vercel 需要的应用实例
+application = app
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
