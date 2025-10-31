@@ -175,7 +175,7 @@ main {
 
 .disco-section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 调整最小宽度以适应更多专辑卡片 */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 增加最小宽度，让卡片更大 */
     gap: 3rem 2rem;/* 行间距和列间距 */
     padding: 2rem 0;
 }
@@ -747,7 +747,7 @@ footer p {
    ===================================================== */
 @media (max-width: 1024px) {/* 中等屏幕调整 */
     .disco-section {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
     }
     
