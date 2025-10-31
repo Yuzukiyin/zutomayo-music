@@ -1190,18 +1190,18 @@ footer p {
     
     /* YouTube 播放器缩放 */
     .youtube-player iframe {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        aspect-ratio: 680 / 383;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 680 / 383 !important;
     }
     
     /* Bilibili 播放器缩放 */
     .bilibili-player iframe {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        aspect-ratio: 680 / 383;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 680 / 383 !important;
     }
     
     /* 通用播放器缩放 */
@@ -1211,40 +1211,39 @@ footer p {
         min-height: 150px;
     }
     
-    /* 轮播按钮调整：缩小尺寸，移到轮播指示器两侧 */
+    /* 轮播按钮调整：移到底部指示器旁边 */
+    .carousel-container {
+        position: static; /* 改为静态定位 */
+    }
+    
+    .player-carousel {
+        position: relative; /* 轮播外层容器作为定位参考 */
+    }
+    
     .carousel-btn {
-        width: 36px;
-        height: 36px;
-        position: relative;
-        top: auto;
-        transform: none;
-        margin: 0 8px;
+        position: absolute !important;
+        top: auto !important;
+        bottom: 1rem !important; /* 定位到底部，与指示器同高度 */
+        transform: translateY(0) !important;
+        width: 36px !important;
+        height: 36px !important;
     }
     
     .carousel-btn.prev {
-        left: auto;
+        left: calc(50% - 120px) !important; /* 在指示器左侧 */
     }
     
     .carousel-btn.next {
-        right: auto;
+        right: calc(50% - 120px) !important; /* 在指示器右侧 */
     }
     
     .carousel-btn svg {
-        width: 18px;
-        height: 18px;
+        width: 18px !important;
+        height: 18px !important;
     }
     
     .carousel-btn:hover {
-        transform: scale(1.1);
-    }
-    
-    /* 将按钮和指示器放在同一行 */
-    .carousel-indicators {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0;
-        margin-top: 1rem;
+        transform: scale(1.1) !important;
     }
 }
 
