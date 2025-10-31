@@ -2094,3 +2094,62 @@ footer p {
         color: black;
     }
 }
+
+/* =====================================================
+   返回顶部按钮
+   ===================================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    transform: translateX(100px); /* 初始状态：向右平移隐藏 */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* 隐藏时不可点击 */
+}
+
+.back-to-top.show {
+    opacity: 1;
+    transform: translateX(0); /* 显示时：平移回原位 */
+    pointer-events: auto; /* 显示时可点击 */
+}
+
+.back-to-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.back-to-top:hover img {
+    transform: scale(1.1); /* 悬停时放大 */
+}
+
+.back-to-top:active img {
+    transform: scale(0.95); /* 点击时缩小 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .back-to-top {
+        width: 50px;
+        height: 50px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
