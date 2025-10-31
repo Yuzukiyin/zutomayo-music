@@ -63,8 +63,8 @@ def generate_album_hover_text(album_id):
         # 如果有可用的歌曲文件
         if available_tracks:
             hover_texts = []
-            # 生成最多5组悬停文本
-            for _ in range(min(5, len(available_tracks))):
+            # 生成最多30组悬停文本
+            for _ in range(min(30, len(available_tracks))):
                 # 随机选择一首歌
                 track_data = random.choice(available_tracks)
                 track_title = track_data['title']
