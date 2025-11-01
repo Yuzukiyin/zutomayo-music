@@ -15,9 +15,10 @@ def index():
     """首页 - 显示所有专辑"""
     albums = db.execute("SELECT * FROM albums ORDER BY release_date")
     
-    # 为每个专辑生成悬停文本
+    # 检查每个专辑是否有预生成的悬停文本，如果没有则动态生成
     for album in albums:
-        album['hover_texts'] = generate_album_hover_text(album['id'])
+        if not album.get('hover_texts'):
+            album['hover_texts'] = generate_album_hover_text(album['id'])
     
     return render_template('index.html', albums=albums)
 
