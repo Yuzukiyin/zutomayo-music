@@ -935,7 +935,7 @@ footer p {
     }
 }
 
-@media (max-width: 900px) {/* 小于 900px 屏幕调整 */
+@media (max-width: 1200px) {/* 小于 1200px 屏幕调整 */
     .album-detail,
     .track-detail {
         max-width: 100%;
@@ -995,11 +995,11 @@ footer p {
     }
     
     .carousel-container .carousel-btn.prev {
-        left: calc(50% - 100px) !important;
+        left: calc(50% - 120px) !important;
     }
     
     .carousel-container .carousel-btn.next {
-        right: calc(50% - 100px) !important;
+        right: calc(50% - 120px) !important;
     }
     
     .carousel-btn svg {
@@ -1907,6 +1907,14 @@ footer p {
     border-radius: 6px;
     border-color: rgba(255, 255, 255, 0.8);
 }
+
+
+.track-detail {
+    overflow-x: hidden; /* 临时阻止横向溢出，测试是否为溢出引起空白 */
+}
+/* 如果发现是某个元素水平溢出导致的空白，以下规则可直接在本地启用来临时隐藏横向溢出
+   我暂不启用，若你愿意让我试验可修改为 .track-detail { overflow-x: hidden; } */
+
 
 /* 响应式调整 */
 @media (max-width: 768px) {
