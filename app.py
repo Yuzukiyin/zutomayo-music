@@ -1,4 +1,3 @@
-"""ZUTOMAYO 音乐网站 - Flask 应用"""
 from flask import Flask, render_template, jsonify, request
 from cs50 import SQL
 import json

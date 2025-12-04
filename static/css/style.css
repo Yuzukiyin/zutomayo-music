@@ -1,47 +1,28 @@
-/* =====================================================
-    基础 Reset
-    说明：统一浏览器默认样式，便于后续风格控制
-    属性排序规则（自上而下）：
-    1) 布局/定位 position/z-index/display/flex/grid
-    2) 盒模型 margin/padding/box-sizing
-    3) 尺寸 width/height/max/min
-    4) 溢出 overflow
-    5) 排版与文本 font/line-height/letter-spacing/text-*
-    6) 背景与颜色 background/color
-    7) 边框与圆角 border/border-radius
-    8) 视觉效果 box-shadow/filter/backdrop-filter
-    9) 变换与动效 transform/transition/animation
-    10) 其他
-    ===================================================== */
 /* 基础样式重置 */
 * {
     margin: 0;
-    padding: 0;/* 去除默认内外边距 */
-    box-sizing: border-box;/* 包括内边距和边框在内计算元素总宽高 */
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* =====================================================
-    CSS 变量（主题色/过渡）
-    ===================================================== */
+
 :root {/* 颜色变量和过渡效果 */
     --primary-color: #8282b5;
     --secondary-color: #5d6d98;
     --accent-color: #0f3460;
-    --highlight-color: #ffffff;/* 强调颜色 */
-    --text-color: #635b5b;/* 主要文本颜色 */
-    --bg-dark: #333440;/* 深色背景 */
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);/* 平滑过渡效果 */
+    --highlight-color: #ffffff;
+    --text-color: #635b5b;
+    --bg-dark: #333440;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =====================================================
-    全局排版
-    ===================================================== */
+/*全局排版*/
 body {
     font-family:
-    "Hiragino Sans",          /* macOS 日文字体 */
-    "Yu Gothic",              /* Windows 日文字体 */
-    "Microsoft YaHei",        /* Windows 中文字体 */
-    "PingFang SC",            /* macOS 中文字体 */
+    "Hiragino Sans",         
+    "Yu Gothic",             
+    "Microsoft YaHei",       
+    "PingFang SC",            
     sans-serif;
     line-height: 1.7;
     color: var(--text-color);
@@ -51,22 +32,19 @@ body {
 }
 
 .container {
-    max-width: 1400px;/* 增加最大宽度 */
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
 }
 
-/* =====================================================
-   导航栏
-   ===================================================== */
+/* 导航栏 */
 .navbar {
     background: #5c4267;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(84, 164, 211, 0.1);
-    /* 统一控制导航栏高度，便于内部元素按比例缩放 */
     --nav-h: 5vh;
-    padding: 0; /* 固定高度后移除垂直内边距，避免超过 5vh */
-    height: var(--nav-h); /* 占屏幕高度的 5% */
+    padding: 0; 
+    height: var(--nav-h);
     position: sticky;
     top: 0;
     z-index: 1000;  
@@ -77,28 +55,26 @@ body {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    height: 100%; /* 填满导航栏高度，便于内容垂直居中 */
-    justify-content: flex-start; /* LOGO 居左 */
+    height: 100%;
+    justify-content: flex-start; 
 }
 
 .logo {
-    /* 字号随导航栏高度与视口宽度共同自适应，优先取更小值避免换行 */
     font-size: min(calc(var(--nav-h) * 0.45), calc(2.4vw + 6px));
     font-weight: 700;
     color: #fff;
     text-decoration: none;
-    /* 减小字距并随字号等比缩放，避免占宽过大导致换行 */
+
     letter-spacing: 0.2em;
     transition: var(--transition);
     position: relative;
-    /* 使用 Cinzel - 棱角分明的细体字体 */
     font-family: 'Cinzel', serif;
     text-transform: uppercase;
     display: inline-block;
-    padding: 0; /* 取消上下内边距，避免在小高度下溢出 */
-    line-height: 1; /* 稳定行高，避免垂直方向挤压 */
-    white-space: nowrap; /* 禁止换行，保持单行显示 */
-    overflow: hidden; /* 极端窄屏时防止溢出 */
+    padding: 0; 
+    line-height: 1; 
+    white-space: nowrap; 
+    overflow: hidden; 
 }
 
 
@@ -107,9 +83,7 @@ body {
     filter: brightness(1.2);
 }
 
-/* =====================================================
-   Hero 区域
-   ===================================================== */
+/* Hero 区域*/
 .hero {
     text-align: center;
     padding: 5rem 0 3rem;
@@ -143,12 +117,12 @@ body {
     position: relative;
     /* 使用和悬停文字相同的衬线字体 */
     font-family: 
-        'Noto Serif JP',         /* 思源宋体日文 */
-        'Yu Mincho',             /* Windows 日文明朝体 */
-        'Hiragino Mincho ProN',  /* macOS 日文明朝体 */
-        'SimSun',                /* Windows 中文宋体 */
-        'STSong',                /* macOS 中文宋体 */
-        serif;                   /* 衬线字体后备 */
+        'Noto Serif JP',         
+        'Yu Mincho',             
+        'Hiragino Mincho ProN',
+        'SimSun',                
+        'STSong',               
+        serif;                   
 }
 
 .hero-subtitle {
@@ -158,43 +132,38 @@ body {
     font-weight: 300;
 }
 
-/* =====================================================
-   专辑展示区（网格）
-   ===================================================== */
+/* 专辑展示区（网格） */
 main {
-    padding: 2rem 0;/* 增加顶部和底部内边距 */
-    min-height: calc(100vh - 200px);/* 考虑导航栏和页脚高度 */
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
 }
 
 .disco-wrap {
     margin-top: 2rem;
     max-width: 80%;  /* 限制宽度为屏幕的80% */
-    margin-left: auto;  /* 居中显示 */
-    margin-right: auto;  /* 居中显示 */
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 .disco-section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 默认自适应，最小280px */
-    gap: 3rem 2rem;/* 行间距和列间距 */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 3rem 2rem;
     padding: 2rem 0;
 }
 
-/* =====================================================
-   专辑卡片
-   ===================================================== */
+/*专辑卡片*/
 .disco-item {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(233, 236, 237, 0.1) 100%); /* 调高透明度，更融合背景 */
-    border-radius: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(233, 236, 237, 0.1) 100%); 
     overflow: hidden;
     transition: var(--transition);
-    border: 1px solid rgba(255, 255, 255, 0.15); /* 稍微加强边框透明度 */
+    border: 1px solid rgba(255, 255, 255, 0.15); 
 }
 
 .disco-item:hover {
     transform: translateY(-8px);
-    border-color: rgba(255, 255, 255, 0.65); /* 悬停时边框更明显 */
-    box-shadow: 0 20px 40px rgba(240, 213, 224, 0.4); /* 使用卡片色调的阴影，更统一 */
+    border-color: rgba(255, 255, 255, 0.65); 
+    box-shadow: 0 20px 40px rgba(240, 213, 224, 0.4); 
 }
 
 .disco-empty {
@@ -213,12 +182,12 @@ main {
     letter-spacing: 2px;
     /* 使用和悬停文字相同的衬线字体 */
     font-family: 
-        'Noto Serif JP',         /* 思源宋体日文 */
-        'Yu Mincho',             /* Windows 日文明朝体 */
-        'Hiragino Mincho ProN',  /* macOS 日文明朝体 */
-        'SimSun',                /* Windows 中文宋体 */
-        'STSong',                /* macOS 中文宋体 */
-        serif;                   /* 衬线字体后备 */
+        'Noto Serif JP',         
+        'Yu Mincho',             
+        'Hiragino Mincho ProN',
+        'SimSun',                
+        'STSong',               
+        serif;                   
 }
 
 .disco-title {
@@ -231,12 +200,12 @@ main {
     letter-spacing: 1px;
     /* 使用和悬停文字相同的衬线字体 */
     font-family: 
-        'Noto Serif JP',         /* 思源宋体日文 */
-        'Yu Mincho',             /* Windows 日文明朝体 */
-        'Hiragino Mincho ProN',  /* macOS 日文明朝体 */
-        'SimSun',                /* Windows 中文宋体 */
-        'STSong',                /* macOS 中文宋体 */
-        serif;                   /* 衬线字体后备 */
+        'Noto Serif JP',         
+        'Yu Mincho',             
+        'Hiragino Mincho ProN',
+        'SimSun',                
+        'STSong',               
+        serif;                   
 }
 
 .disco-image {
@@ -270,12 +239,12 @@ main {
 .overlay-text {
     color: white;
     font-family: 
-        'Noto Serif JP',         /* 思源宋体日文 */
-        'Yu Mincho',             /* Windows 日文明朝体 */
-        'Hiragino Mincho ProN',  /* macOS 日文明朝体 */
-        'SimSun',                /* Windows 中文宋体 */
-        'STSong',                /* macOS 中文宋体 */
-        serif;                   /* 衬线字体后备 */
+        'Noto Serif JP',         
+        'Yu Mincho',             
+        'Hiragino Mincho ProN',
+        'SimSun',                
+        'STSong',               
+        serif;                   
     font-weight: 200;  /* 极细 */
     font-size: 1rem;
     letter-spacing: 2px;
@@ -301,9 +270,7 @@ main {
     padding: 1.5rem;
 }
 
-/* =====================================================
-   按钮
-   ===================================================== */
+/*按钮*/
 .btn {
     display: inline-block;
     padding: 0.9rem 2rem;
@@ -325,13 +292,11 @@ main {
     box-shadow: 0 10px 25px rgba(122, 107, 143, 0.4);
 }
 
-/* =====================================================
-   专辑详情页
-   ===================================================== */
+/* 专辑详情页 */
 .album-detail {/* 专辑详情页容器样式 */
     max-width: 80%;  /* 限制宽度为屏幕的80% */
-    margin-left: auto;  /* 居中显示 */
-    margin-right: auto;  /* 居中显示 */
+    margin-left: auto; 
+    margin-right: auto; 
     background: rgba(255, 255, 255, 0.02);/* 半透明背景，更融合整体风格 */
     border: 1px solid rgba(255, 255, 255, 0.05);/* 细边框 */
     padding: 3rem;/* 内边距 */
@@ -369,12 +334,12 @@ main {
     letter-spacing: 2px;
     line-height: 1.2;
     font-family: 
-    'Noto Serif JP',         /* 思源宋体日文 */
-    'Yu Mincho',             /* Windows 日文明朝体 */
-    'Hiragino Mincho ProN',  /* macOS 日文明朝体 */
-    'SimSun',                /* Windows 中文宋体 */
-    'STSong',                /* macOS 中文宋体 */
-    serif;                   /* 衬线字体后备 */
+    'Noto Serif JP',         
+    'Yu Mincho',             
+    'Hiragino Mincho ProN',
+    'SimSun',                
+    'STSong',               
+    serif;                   
 }
 
 
@@ -392,9 +357,7 @@ main {
     font-size: 1.1rem;
 }
 
-/* =====================================================
-   曲目列表（表格）
-   ===================================================== */
+/*曲目列表（表格）*/
 .tracklist {/* 曲目列表容器样式 */
     margin-top: 3rem;
 }
@@ -442,8 +405,8 @@ main {
 }
 
 .track-row {/* 曲目行样式 */
-    transition: var(--transition);/* 平滑过渡 */
-    cursor: pointer;/* 鼠标悬停时显示指针 */
+    transition: var(--transition);
+    cursor: pointer;
 }
 
 .track-row:hover {/* 曲目行悬停效果 */
@@ -451,24 +414,25 @@ main {
     transform: translateX(5px);
 }
 
-.track-title {/* 曲目标题样式 */
+/* 曲目标题样式 */
+.track-title {
     font-weight: 600;
     color: #fff;
     font-size: 1.05rem;
     font-family: 
-    'Noto Serif JP',         /* 思源宋体日文 */
-    'Yu Mincho',             /* Windows 日文明朝体 */
-    'Hiragino Mincho ProN',  /* macOS 日文明朝体 */
-    'SimSun',                /* Windows 中文宋体 */
-    'STSong',                /* macOS 中文宋体 */
-    serif;                   /* 衬线字体后备 */
+    'Noto Serif JP',         
+    'Yu Mincho',             
+    'Hiragino Mincho ProN',
+    'SimSun',                
+    'STSong',               
+    serif;                   
 }
 
-.btn-small {/* 小按钮样式 */
+.btn-small {
     padding: 0.5rem 1rem;
-    background: transparent;/* 透明背景 */
-    color: var(--highlight-color);/* 突出显示文字颜色 */
-    border: 1px solid var(--highlight-color);/* 突出显示边框 */
+    background: transparent;
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color);
     cursor: pointer;
     transition: var(--transition);
     font-weight: 700;
@@ -485,9 +449,7 @@ main {
     margin-top: 3rem;
 }
 
-/* =====================================================
-   页脚
-   ===================================================== */
+/* 页脚*/
 footer {
     background: rgba(26, 26, 46, 0.95);/* 深色半透明背景 */
     padding: 3rem 0;
@@ -501,13 +463,11 @@ footer p {
     letter-spacing: 1px;
 }
 
-/* =====================================================
-   单曲详情页
-   ===================================================== */
+/*单曲详情页*/
 .track-detail {
     max-width: 80%;  /* 限制宽度为屏幕的80% */
-    margin-left: auto;  /* 居中显示 */
-    margin-right: auto;  /* 居中显示 */
+    margin-left: auto; 
+    margin-right: auto; 
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 0 2rem;
@@ -761,9 +721,7 @@ footer p {
     }
 }
 
-/* =====================================================
-   响应式设计
-   ===================================================== */
+/*响应式设计*/
 /* 超大屏幕 (2560px+) */
 @media (min-width: 2560px) {
     .container {
@@ -979,7 +937,7 @@ footer p {
         height: 100% !important;
     }
     
-    /* === 轮播按钮重新布局：移到底部与指示器同行 === */
+    /* 轮播按钮重新布局：移到底部与指示器同行  */
     
     /* 将按钮移到容器外下方 */
     .carousel-container .carousel-btn {
@@ -1288,8 +1246,8 @@ footer p {
         min-height: 150px;
     }
 }
-
-@media (max-width: 480px) {/* 超小屏幕调整 */
+/* 超小屏幕调整 */
+@media (max-width: 480px) {
     .container {
         padding: 0 15px;
     }
@@ -1640,9 +1598,7 @@ footer p {
     }
 }
 
-/* =====================================================
-    音频播放器样式
-    ===================================================== */
+/*音频播放器样式*/
 .track-player {
     margin: 2rem 0;
     padding: 2rem;
@@ -1784,9 +1740,7 @@ footer p {
     }
 }
 
-/* =====================================================
-    播放器轮播样式
-    ===================================================== */
+/*播放器轮播样式*/
 .player-carousel {
     position: relative;
     width: 100%;
@@ -1836,22 +1790,22 @@ footer p {
 
 /* 轮播按钮 - 圆形完整显示，向外移动，高透明度 */
 .carousel-btn {
-    position: absolute;/* 绝对定位 */
-    top: 50%;/* 垂直居中 */
-    transform: translateY(-50%);/* 垂直居中调整 */
-    background: rgba(255, 255, 255, 0.1);/* 半透明背景 */
-    border: 2px solid rgba(255, 255, 255, 0.1);/* 半透明边框 */
-    width: 50px;/* 固定宽度 */
-    height: 50px;/* 固定高度 */
-    border-radius: 50%;/* 圆形按钮 */
-    cursor: pointer;/* 鼠标指针 */
-    display: flex;/* 使用 Flexbox */
-    align-items: center;/* 垂直居中图标 */
-    justify-content: center;/* 水平居中图标 */
-    z-index: 10;/* 确保按钮在最上层 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);/* 轻微阴影 */
-    transition: all 0.3s ease;/* 平滑过渡 */
-    color: #fff;/* 白色图标 */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    color: #fff;
     backdrop-filter: blur(8px);
 }
 
@@ -1908,13 +1862,10 @@ footer p {
     border-color: rgba(255, 255, 255, 0.8);
 }
 
-
+/* 临时阻止横向溢出，测试是否为溢出引起空白 */
 .track-detail {
-    overflow-x: hidden; /* 临时阻止横向溢出，测试是否为溢出引起空白 */
+    overflow-x: hidden; 
 }
-/* 如果发现是某个元素水平溢出导致的空白，以下规则可直接在本地启用来临时隐藏横向溢出
-   我暂不启用，若你愿意让我试验可修改为 .track-detail { overflow-x: hidden; } */
-
 
 /* 响应式调整 */
 @media (max-width: 768px) {
@@ -2025,9 +1976,7 @@ footer p {
     }
 }
 
-/* =====================================================
-   通用响应式优化
-   ===================================================== */
+/* 通用响应式优化*/
 /* 触摸设备优化 - 移除悬停效果，增加点击反馈 */
 @media (hover: none) and (pointer: coarse) {
     .disco-item:hover {
@@ -2103,9 +2052,7 @@ footer p {
     }
 }
 
-/* =====================================================
-   返回顶部按钮
-   ===================================================== */
+/* 返回顶部按钮*/
 .back-to-top {
     position: fixed;
     bottom: 2rem;
